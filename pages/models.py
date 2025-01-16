@@ -12,8 +12,8 @@ class Category(models.Model):
 class Book(models.Model):
     STATUS_CHOICES = [
         ('available', 'Available'),
-        ('rented', 'Rented'),
-        ('reserved', 'Reserved'),
+        ('sold', 'sold'),
+        ('rented', 'rented'),
     ]
 
     title = models.CharField(max_length=200)

@@ -164,7 +164,7 @@
               <ul class="nav">
             
              {% for category in category  %}
-                <li class="nav-item ">
+                <li class="nav-item category{{category.id}}">
                   <a id="" class="nav-link bg-primary" href="#">{{category.name}}</a>
                 </li>
                 {% endfor %} 
@@ -174,7 +174,7 @@
        <!-- الكتب -->
        <div class="row"> <!-- بداية الصف -->
         {% for book in book %}
-        <div class="col-md-4 col-sm-6"> <!-- كل كتاب يأخذ 4 أعمدة على الشاشات المتوسطة و6 على الشاشات الصغيرة -->
+        <div id="" class="col-md-4 bookhide book{{book.category.id}} book{{book.status}}"> <!-- كل كتاب يأخذ 4 أعمدة على الشاشات المتوسطة و6 على الشاشات الصغيرة -->
             <!-- Widget: user widget style 1 -->
             <div class="card card-widget widget-user">
                 <!-- Dropdown menu -->
@@ -238,7 +238,7 @@
                         <div class="col-sm-4">
                             <div class="description-block">
                                 <h5 class="description-header 
-                                    {% if book.status == 'available' %}text-success{% elif book.status == 'rented' %}text-danger{% elif book.status == 'reserved' %}text-warning{% else %}text-dark{% endif %}">
+                                    {% if book.status == 'available' %}text-success{% elif book.status == 'sold' %}text-danger{% elif book.status == 'rented' %}text-warning{% else %}text-dark{% endif %}">
                                     {{ book.status }}
                                 </h5>
                                 <span class="description-text">الحالة</span>

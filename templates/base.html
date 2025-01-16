@@ -63,9 +63,26 @@
     $('#myModal').on('shown.bs.modal', function () {
       $('#myInput').trigger('focus')
     });
+
+    {% for book in book %}
+    $(".category{{book.category.id}}").click(function () {
+    $(".bookhide").hide()
+    $(".book{{book.category.id}}").show()
+  });
+
+  $(".status{{book.status}}").click(function () {
+
+  
+    $(".bookhide").hide()
+    $(".book{{book.status}}").show()
+  });
+  {% endfor %}
+
+
 /*here i will make loop for get id category and status for contact with books */
 /*حساب اجمالي الارباح و هي عبارة عن حاصل جمع سعر الكتب عند البيع بالاضافة الى سعر استعارة الكتاب*/
   });
+
 </script>
 <script>
  
@@ -203,8 +220,10 @@ $(function () {
 })
 
 
- 
+
+
 </script>
+
 
 </body>
 </html>
