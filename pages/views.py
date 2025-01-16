@@ -34,20 +34,36 @@ def index(request):
     category = Category.objects.all()
     book = Book.objects.all()
     
+    
     # Prepare context for the template
     context = {
         'book': book,
         'category': category,
         'form': BookForm(),
         'categor': Categoryform(),
+        'allbooks': Book.objects.filter(active=True).count(),
+        'booksold': Book.objects.filter(status='sold').count(),
+        'bookrented': Book.objects.filter(status='rented').count(),
+        'bookavailable': Book.objects.filter(status='available').count(),
+        
     }
 
     return render(request, 'pages/index.html', context)
 
 def books(request):
+    
+    search=Book.objects.all()
+    title=None
+    if 'search_name' in request.GET:
+        title=request.GET['search_name']
+        search=search.filter(title__icontains=title)
+    
+
+
+    
     category=Category.objects.all()
     book=Book.objects.all()
-    context={'book':book,'category':category}
+    context={'book':search,'category':category}
 
     return render(request, 'pages/books.html',context)
 
