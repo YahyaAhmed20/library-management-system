@@ -52,18 +52,24 @@ def index(request):
 
 def books(request):
     
+    form5 = Categoryform(request.POST, request.FILES)
+    if form5.is_valid():
+            myform5 = form5.save(commit=False)
+            myform5.owner = request.user
+            myform5.save()
+            messages.success(request, 'Congratulations You Added Category!')  # Only call this once
+            return redirect('/')
+        
     search=Book.objects.all()
     title=None
     if 'search_name' in request.GET:
         title=request.GET['search_name']
         search=search.filter(title__icontains=title)
     
-
-
-    
     category=Category.objects.all()
     book=Book.objects.all()
-    context={'book':search,'category':category}
+    context={'book':search,'category':category,'categor': Categoryform(),
+}
 
     return render(request, 'pages/books.html',context)
 
